@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      background-color: #fed;
+      font-family: 'Roboto', sans-serif;
+      font-size: 24px;
+      color: #a33;
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      color: inherit;
+      font-size: inherit;
+      margin: 0 10px;
+      padding: 0 10px;
+    }
+    .options {
+      text-align: center;
+    }
+    .options__header {
+      margin-bottom: 0;
+    }
+    .options__selectors {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+    }
+    .selector {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .selector__header {
+      font-size: inherit;
+    }
+    .selector__controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .options__button {
+      margin: 15px auto;
+      padding: 5px 10px;
+      font-size: 30px;
+      border: 3px solid #a33;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="options">
+    
+    <h1 class="options__header">Options</h1>
+
+    <div class='options__selectors'>
+
+      <article class='selector'>
+        <h2 class='selector__header'>Default Break Length</h2>
+        <div class='selector__controls'>
+          <button class='selector__button' id='decrement-break'>-</button>
+          <span id='break'>10</span>
+          <button class='selector__button' id='increment-break'>+</button>
+        </div>
+      </article>
+
+      <article class='selector'>
+        <h2 class='selector__header'>Default Session Length</h2>
+        <div class='selector__controls'>
+          <button class='selector__button' id='decrement-session'>-</button>
+          <span id='session'>50</span>
+          <button class='selector__button' id='increment-session'>+</button>
+        </div>
+      </article>
+
+    </div>
+
+    <button class='options__button' id='save'>Save</button>
+
+  </section>
+
+  <script src="options.js"></script>
+</body>
+</html>

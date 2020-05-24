@@ -10,10 +10,6 @@ const $startStop = document.getElementById('start-stop')
 const $reset = document.getElementById('reset')
 
 let state = null
-chrome.runtime.sendMessage('getState', (response) => {
-  state = response
-  init()
-})
 
 const init = () => {
   $decrementBreak.addEventListener('click', () => sendMessage('decrementBreak'))
@@ -67,3 +63,8 @@ const init = () => {
   updateUI()
   setInterval(getState, 1000)
 }
+
+chrome.runtime.sendMessage('getState', (response) => {
+  state = response
+  init()
+})

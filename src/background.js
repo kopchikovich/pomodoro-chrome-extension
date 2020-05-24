@@ -1,12 +1,26 @@
 const initialState = {
-  breakLength: 10,
-  sessionLength: 50,
-  sessionMinutes: 50,
+  breakLength: 15,
+  sessionLength: 45,
+  sessionMinutes: 45,
   sessionSeconds: 0,
   status: 'Session',
   isWork: false,
   interval: null
 }
+chrome.storage.sync.get(['breakLength', 'sessionLength'], (res) => {
+  if (res.breakLength && res.sessionLength) {
+    initialState.breakLength = +res.breakLength
+    initialState.sessionLength = +res.sessionLength
+    initialState.sessionMinutes = +res.sessionLength
+  } else {
+    chrome.storage.sync.set({
+      'breakLength': initialState.breakLength,
+      'sessionLength': initialState.sessionLength
+    })
+  }
+  reset()
+})
+
 let state = {...initialState}
 const beep = new Audio('t-rex-roar.mp3')
 
@@ -84,4 +98,14 @@ chrome.runtime.onMessage.addListener((action, sender, sendResponse) => {
       break;
   }
   sendResponse(state)
+})
+
+chrome.storage.onChanged.addListener((changes) => {
+  for (let key in changes) {
+    initialState[key] = changes[key].newValue
+    if (key === 'sessionLength') {
+      initialState.sessionMinutes = changes[key].newValue
+    }
+  }
+  reset()
 })
